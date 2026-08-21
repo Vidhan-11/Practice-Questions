@@ -1,0 +1,38 @@
+#include<stdio.h>
+#define MAX 10
+int main(){
+	int num[MAX];
+	// length is for the length of final array.. position is for the position of where it starts in the orignal array..
+	// sum is the total value of summation of final array
+	//in is declared to know the number of char inside array..
+	int in = 0,sum = 0,length = 0,position = 0;
+	printf("Give a arrays of numbers..\n");
+	printf("Enter 0 to end the loop\n0 is not to be stored in the array\n");
+	//loop is to input the numbers inside the integer array..
+	for(int a = 0; a<MAX;a++){
+		scanf("%d",&num[a]);
+		in ++;
+		if(num[a]== 0){
+			break;
+		}}
+	// First for loop is to control to  the numbers to be taken for sum..
+	for(int i = 0; i<in;i ++){
+	//This value is to iterrate on the array..
+		for(int j = 0; j<(in - i);j++){
+	//Third loop is to find the sum to be compared..
+		int check = 0;
+		for(int k = j; k < j+i;k++){
+			check += num[k];			
+		}if(check>sum){
+			sum = check;
+			length = i;
+			position = j;
+		}}}
+	printf("\nYour final array with maximmum summation is :");
+	printf("[");
+	for(int m = 0; m<length;m++){
+		printf("%d,",num[position + m]);
+	}printf("]");
+	printf("\n");
+	printf("Total sum of numbers inside is : %d\n",sum);
+	
