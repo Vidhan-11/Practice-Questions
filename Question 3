@@ -1,0 +1,26 @@
+#include<stdio.h>
+int main(){
+	int in=0,count = 0;
+	char pair[in];
+	printf("To end the input loop enter E.. Kindly enter parenthesis only.\n");
+	while(1){
+		scanf(" %c",&pair[in]);
+		if(pair[in]=='E'){
+			break;
+		}in++;		
+		}
+	
+	for(int k = 0; k<=in;k++){
+		printf("\n%c",pair[k]);
+	}
+	for(int i = 1;i < in+1 ;i++){
+		
+		for(int j = 0;j < in -i ;j ++){
+			
+		if(pair[j]=='(' && pair[j +i]==')'){
+			count++;
+			
+		}}}
+	printf("The total number of valid parenthesis are : %d",count);
+	return 0;
+	}*\
