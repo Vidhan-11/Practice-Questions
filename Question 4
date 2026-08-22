@@ -1,0 +1,44 @@
+#include<stdio.h>
+//jump game
+int main(){
+	int i = 0, num[i+1], sort[i+1],length,index, total;
+	while(1){
+		scanf("%d",&num[i]);
+		if(num[i] == 101){
+			break;
+		}	
+		i++;
+	}
+	for(int j = 0; j< i; j++){
+		sort[j] = num[j];
+	}
+	for(int j = 0; j < i; j++){
+		for(int k = 0; k < i -1 ; k ++){
+			if(sort[k] < sort[k +1 ]){
+			sort[k]= sort[k]^sort[k+1];
+			sort[k+1]=sort[k]^sort[k+1];
+			sort[k]=sort[k]^sort[k+1];
+		}
+	}}
+	for(int h = 0; h < i ; h++){
+	for(int j = 0; j < i; j++){
+		int sum = 0;
+		for(int k = 0; k < j + 1 ; k ++){
+			sum += sort[ h + k];
+		}total = sum ; 
+		if(sum == i){
+			index = h;
+			length = j;
+			break;
+		}
+		}
+	}
+	if(total == 0){
+		printf("Invalid array of numbers input");
+		return 0 ;
+	}
+	printf("The minimum number of jumps needed to jump across the array are : %d\n",length);
+	
+	
+	return 0 ;
+}
