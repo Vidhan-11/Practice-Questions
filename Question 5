@@ -1,0 +1,40 @@
+#include<stdio.h>
+//smallest positive integer
+int main(){
+	int i = 0, num[i+1],check;
+	printf("Enter an array of numbers..\n");
+	while(1){
+		scanf("%d",&num[i]);
+		if(num[i] == 101){
+			break;
+		}	
+		i++;
+	}
+	for(int j = 0; j<i;j++ ){
+		for(int k = 0;k < i; k++){
+			if(num[k] > num[j]){
+				check = num[k];
+			}
+		}
+	}
+	for(int j = 1;j < check; j++){
+		int count = 0;
+		for(int k=0;k<i;k++ ){
+			if( j = num[k]){
+				count++;
+			}
+		}
+		if(count == 0){
+			printf("Least positive integer is %d",j);
+			return ;
+		}
+	}
+	printf("Least positive integer is %d", check + 1);
+	
+	
+	
+	
+	return 0;
+	
+
+}
