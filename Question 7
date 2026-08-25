@@ -1,0 +1,92 @@
+#include<stdio.h>
+
+int main(){
+	int num,start = 0,stop = 0,i = 0 ;
+	char pattern[11];
+	printf("Enter numbers in any combination from 2-9\n");
+	printf("Maximum numbers possible to input are 4\n");
+	
+	while(stop < 4 ){
+	printf("Enter number %d\n" ,++i);
+	scanf(" %d",&num);
+	switch (num){
+		case 2:
+			for(int i = 0  ;i < 3 ; i++){
+				pattern[start + i ] = 'a' + i ;
+				
+				
+			}start += 3;
+				break ; 
+			
+		case 3:
+			for(int i = 0  ;i < 3 ; i++){
+				pattern[start + i ] = 'd' + i ;
+				
+			}start += 3;
+			break ; 
+			
+		case 4:
+			for(int i = 0  ;i <  3 ; i++){
+				pattern[start + i ] = 'g' + i;
+				
+			}start += 3;
+				break ; 
+			
+		case 5:
+			for(int i = 0  ;i <  3 ; i++){
+				pattern[start + i ] = 'k' + i;
+				
+				
+			}start += 3;
+			break;
+		case 6:
+			for(int i = 0 ;i <  3 ; i++){
+				pattern[start + i ] = 'o' + i;
+				
+			}start += 3;
+				break ; 
+			
+		case 7:
+			for(int i = 0 ;i <  4 ; i++){
+				pattern[start + i ] = 'p' + i;
+				
+			}start += 4;
+			
+				break ; 
+				
+			
+		case 8:
+			for(int i = 0 ;i <  3 ; i++){
+				pattern[start + i ] = 't' + i;
+				
+			}start += 3;
+			
+				break ; 
+			
+		case 9:
+			for(int i = 0 ;i <  4 ; i++){
+				pattern[start + i ] = 'w' + i;
+				
+			}start += 4;
+			
+				break ; 
+		case 0:
+			break;
+			
+			
+		default:
+			printf("Invalid number is input ");
+				
+	}stop++;}
+	
+	printf("%d",start);
+	for(int i = 0;i < start ; i++){
+		for(int j = i +1; j < start;j++){
+			printf("[%c,%c]",pattern[i],pattern[j]);
+			
+		}
+		printf("\n");
+	}
+	
+	return 0;
+}
