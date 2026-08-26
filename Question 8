@@ -1,0 +1,49 @@
+#include<stdio.h>
+//input binary string and give the smallest beautiful substring in return..
+
+int main(){
+	int binary[10],i = 0;
+	int k ;
+	printf("Substring will be beautiful is it has minimum how many 1's?\n");
+	scanf("%d",&k);
+	printf("Input an array of binary binary numbers..\n");
+	while( i < 10){
+		scanf("%d",&binary[i]);
+		
+		if(!(binary[i] == 1 ||binary[i] == 0)){
+			printf("The loop has endeed\n");
+			break;
+		}
+		i++;
+	}
+	
+	if(k == 1){
+		goto	only ;
+	}
+	for(int j = k;j < i;j++){
+	for(int m = 0; m < i - j;m++){
+		int count = 0;
+		for(int n = m; n < j + m;n++){
+			if(binary[m] == 1){
+				count++;			
+			}
+		
+		if(count == k){
+			printf("[");
+			for(int x = m; x < m + j +1;x++ ){
+				printf("[");
+				printf("%d",binary[x]);
+				printf("]");
+										
+			}printf("]");
+			goto 	other;
+		}}
+}}
+	
+	only:
+	printf("[");
+	printf("%d",1);
+	printf("]");
+	other :
+	return 0;
+}
