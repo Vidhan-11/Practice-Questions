@@ -1,0 +1,22 @@
+#include<iostream>
+using namespace std;
+int power(int num,int n){
+	int final_number = 1,multiplier = num;
+	while(n > 0){
+		if(n%2 == 1){
+		final_number *= multiplier;
+		}
+		multiplier *= multiplier;
+		n = n / 2;
+	}
+	return final_number;
+}
+int main(){
+	int number ,pow ;
+	cout<<"Enter a number"<<endl;
+	cin>>number;
+	cout<<"Enter the power to be raised"<<endl;
+	cin>>pow;
+	cout<<power(number,pow);
+	return 0;
+}
