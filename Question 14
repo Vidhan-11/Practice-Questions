@@ -1,4 +1,5 @@
 #include<iostream>
+#include<vector>
 using namespace std;
 int profit(vector<int> prices){
 	int best_buy = prices[0],max_profit = 0;
