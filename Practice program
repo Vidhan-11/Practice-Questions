@@ -1,0 +1,78 @@
+#include<iostream>
+#include<string>
+using namespace std;
+class Vehicle{
+protected:
+	string owner, license;
+	string VIN;
+public:
+	Vehicle(){};
+	virtual void ask_info();
+	virtual void write_info();
+};
+class RV: public Vehicle{
+private:
+	char category;
+public:
+	RV(){};
+	void ask_info();
+	void write_info();
+};
+class semi: public Vehicle{
+private:
+	double weightCap;
+public:
+	semi(){};
+	void ask_info();
+	void write_info();
+};
+void Vehicle::ask_info(){
+	cout<<"\nEnter owner's name: ";
+	getline(cin, owner);
+	cout<<"\nEnter license plate such as MM JAM 009\n";
+	getline(cin, license);
+	cout<<"\nEnter VIN\n : ";
+	getline(cin, VIN);
+}
+void Vehicle::write_info(){
+	cout<<"\n Owner: "<<owner<<"\n license"<<license<<"\n VIN"<<VIN<<endl;
+}
+void RV::ask_info(){
+	cout<<"\n Enter info for RV.\n";
+	Vehicle::ask_info();
+	cout<<"\nEnter RV class A,B or C\n";
+	cin>>category;
+	cin.ignore();
+}
+void RV::write_info(){
+	Vehicle::write_info();
+	cout<<"\n This RV is of class :"<<category;
+}
+void semi::ask_info(){
+	cout<<"\nEnter info for the semi truck.\n";
+	Vehicle::ask_info();
+	
+	cout<<"Enter the weight capacity\n";
+	cin>>weightCap;
+	cin.ignore();
+}
+void semi::write_info(){
+	Vehicle::write_info();
+	cout<<"\nThis commercial vehicle has a weight capacity of :"<<weightCap << "kg"<<endl;
+}
+int main(){
+	cout<<"The two vehicles program\n"<<endl;
+	Vehicle* base[2];
+	RV Have_fun;
+	semi Go_to_work;
+	base[0] = &Have_fun;
+	base[1] = &Go_to_work;
+	for(int i = 0;i<2;i++){
+		base[i]->ask_info();
+	}
+	for(int i = 0;i <2;i++){
+		base[i]->write_info();
+	}
+	cout<<"\n\n Work? No. Let's go camping";
+	return 0;	
+}
