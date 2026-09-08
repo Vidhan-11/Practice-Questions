@@ -1,0 +1,83 @@
+#include<iostream>
+#include<string>
+using namespace std;
+class CPP_EMPLOYES{	
+public:
+	CPP_EMPLOYES(){};
+	string employee_name,designation;
+	double paycheck;
+	virtual void calculate_pay();
+	virtual void info_write();
+};
+class sales_man: public CPP_EMPLOYES{
+public:
+	sales_man(){};
+	int items;
+	void calculate_pay();
+	void info_write();
+	
+};
+class employee: public CPP_EMPLOYES{
+public:
+	employee(){};
+	int working_hours;
+	void calculate_pay();
+	void info_write();
+	
+};
+void CPP_EMPLOYES::calculate_pay(){
+	cout<<"\nWhat is the name of employee?"<<endl;
+	getline(cin, employee_name);
+	cout<<"\nIs he/she a sales person or a regular employee?"<<endl;
+	getline(cin, designation);
+}
+void CPP_EMPLOYES::info_write(){
+	cout<<"\nName: "<<employee_name<<endl;
+	cout<<"\nDesignation: "<<designation<<endl;
+	cout<<"\nPaycheck: $"<<paycheck<<endl;
+}
+void sales_man::calculate_pay(){
+	CPP_EMPLOYES :: calculate_pay();
+	cout<<"How many items did this person sell?"<<endl;
+	cin>>items;
+	cin.ignore();
+	paycheck += ((items*5000) * (2.5))/100;
+}
+void sales_man::info_write(){
+	CPP_EMPLOYES::info_write();
+	cout<<"These were the earnings of this sales person"<<endl;
+}
+void employee:: calculate_pay(){
+	CPP_EMPLOYES:: calculate_pay();
+	int overtime;
+	cout<<"\nHow many hours did this person work?"<<endl;
+	cin>>working_hours;
+	cin.ignore();
+	if(working_hours>40){
+		overtime += working_hours - 40;
+		working_hours -= 40;
+	}
+	paycheck += (working_hours*120) + (overtime*150);
+}
+void employee::info_write(){
+	CPP_EMPLOYES:: info_write();
+	cout<<"These were the earnings of this employee"<<endl;
+}
+int main(){
+	cout<<"\nMonthly paycheck calculating program of 3 working members.."<<endl;
+	CPP_EMPLOYES* members[3];
+	sales_man S1,S2;
+	employee E1;
+	members[0]= &S1;
+	members[1] = &S2;
+	members[2]= &E1;
+	for(int i = 0;i<3;i++){
+		cout<<"\nEnter the information of working member "<< i<<endl;
+		members[i]->calculate_pay();
+	}
+	for(int i = 0;i<3;i++){
+		members[i]->info_write();
+	}
+	cout<<"\nThese were the earnings of 3 working members"<<endl;
+	return 0;
+}
