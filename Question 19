@@ -1,0 +1,68 @@
+#include<iostream>
+#include<string>
+using namespace std;
+class Sailor{
+public:
+	string name,rank;
+	int seriel_number;
+
+	Sailor(){}
+	Sailor(string name,string rank,int seriel_number){
+		this->name = name;
+		this->rank = rank;
+		this->seriel_number = seriel_number;
+	}
+	virtual void ask_info();
+	virtual void write_info();
+};
+class Sailor_at_sea: public Sailor{
+public:
+	string name_of_ship,home_port;
+
+	Sailor_at_sea(){}
+	
+	void ask_info();
+	void write_info();
+};
+void Sailor::ask_info(){
+	cout<<"\nEnter name of Sailor"<<endl;
+	getline(cin,name);
+	cout<<"Enter rank of sailor"<<endl;
+	getline(cin,rank);
+	cout<<"Enter seriel_number of Sailor"<<endl;
+	cin>>seriel_number;
+	cin.ignore();
+}
+void Sailor::write_info(){
+	cout<<"\nName of Sailor is :"<<name<<endl;
+	cout<<"Rank of Sailor is :"<<rank<<endl;
+	cout<<"Seriel number of Sailor is :"<<seriel_number<<endl;
+}
+void Sailor_at_sea::ask_info(){
+	
+	cout<<"What is Name of ship"<<endl;
+	getline(cin,name_of_ship);
+	cout<<"Name of home_port"<<endl;
+	getline(cin,home_port);
+}
+void Sailor_at_sea::write_info(){
+	Sailor::write_info();
+	cout<<"Name of ship is:"<<name_of_ship<<endl;
+	cout<<"Name of home_port is : "<<home_port<<endl;
+}
+int main(){
+	 
+	Sailor_at_sea S2;
+	Sailor S1("Jhonathan","Sargent",9);
+	S2.name = "Ragnir";
+	S2.rank = "Major";
+	S2.seriel_number = 101;
+	S2.name_of_ship = "Thousand Sunny";
+	S2.home_port = "New Jrsey";
+	S1.ask_info();
+	S1.write_info();
+	S2.ask_info();
+	S2.write_info();
+	return 0;
+	
+}
