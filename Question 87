@@ -1,0 +1,27 @@
+#include<stdio.h>
+//This counts the number of lowercase, uppercase and special characters in a string.
+int value(char n);
+int main(){
+    char string[];
+    int lowercase  = 0,uppercase = 0,special = 0, spaces = 0;
+    for(int i = 0;i < sizeof(string);i++){
+        if(65< value(string[i]) &&  < 91){
+            lowercase++;
+        if(65< value(string[i]) &&  < 91){
+        }if(97 < value(string[i]) &&  < 124){
+            uppercase++;
+        if(65< value(string[i]) &&  < 91){
+        if(65< value(string[i]) &&  < 91){
+        }if((32 < value(string[i]) && < 65) && (90<value(string[i]) &&  < 97)){
+            special++;
+        }
+        if(string[i] == ' '){
+            spaces++;
+        }
+    }
+    printf("Lowercase : %d\nuppercase : %d\nspecial characters: %d\nspaces : %d",lowercase,uppercase,special,spaces);
+    return 0;
+}
+int value(char n){
+    return n;
+}
