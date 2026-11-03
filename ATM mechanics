@@ -11,16 +11,15 @@ void deposit();
 void check_balance();
 void add_account();
 int main(){
-    printf("--------WELECOME!--------\n");
+    printf("WELECOME!\n");
     int k = 0;
-    while(1){
-        int n;
+        int n;    
         checkpoint:      
         if(menu(&n) == 0){
         switch (n){
             case 1 :
                 widthraw();
-                break;  
+                break;
             case 2 :
                 deposit();
                 break;
@@ -38,7 +37,21 @@ int main(){
     }else{
         goto checkpoint;
     }
-}
+    choice :
+    printf("\nDo you want to continue ?\nEnter 1 for yes and 0 for no :");
+    scanf("%d",&k);
+    if(!(k == 1 || k == 0)){
+        printf("\nEnter a valid choice\n");
+        goto choice ;
+    }else{
+        if(k == 1){
+            system("clear");
+            system("./a");
+        }else{
+            printf("--------THANK YOU FOR VISITING--------");
+        }
+    }
+    
     return 0;
 }
 int menu(int* choice){
@@ -66,6 +79,7 @@ int menu(int* choice){
     }
     return 0;
 }
+
 void widthraw(){
     struct Account info;
     FILE* file = fopen("records.dat","r+");
