@@ -46,7 +46,7 @@ int main(){
         goto choice ;
     }else{
         if(k == 1){
-            system("clear");
+            system("cls");
             system("gcc code.c -o a && ./a");
         }else{
             printf("\n--------THANK YOU FOR VISITING--------\n");
@@ -82,14 +82,14 @@ int menu(int* choice){
 }
 
 void widthraw(){
-    FILE* file = fopen("records.dat","w+");
+    FILE* file = fopen("records.dat","w");
     if(file == NULL){
         printf("\nThe file could not be opened.");
         printf("\nThanks for visiting.");
         exit(EXIT_FAILURE);
     }
     struct Account info;
-    int flag;
+    int flag = 0;
     printf("\nEnter your account number");
     int n;
     scanf("%d",&n);
@@ -100,15 +100,19 @@ void widthraw(){
             printf("\nEnter password : ");
             scanf("%d",&pass);
             if(pass == info.password){
-                int amount;
+                float amount;
                 printf("\nHow much money would you like to widhtraw ? ");
-                scanf("%d",&amount);
+                scanf("%f",&amount);
                 if(amount > info.balance){
                     printf("\nAccount balance is insufficient.");
                     fclose(file);
                     break;
+                }else if(amount < 0){
+                    printf("\nNegative widhtraw is not allowed.");
+                    fclose(file);
+                    break;
                 }else{
-                    printf("\nSuccessfully widthrawn !\nYour new account balance is : %d\nThanks for visiting.",info.balance - amount);
+                    printf("\nSuccessfully widthrawn !\nYour new account balance is : %.2f\nThanks for visiting.",info.balance - amount);
                     fseek(file,-(long)sizeof(info),SEEK_CUR);
                     struct Account changer;
                     strcpy(changer.name,info.name);                   
@@ -117,6 +121,7 @@ void widthraw(){
                     changer.balance = info.balance - amount;
                     fwrite(&changer,sizeof(changer),1,file);
                     fclose(file);
+                    break;
                 }
             }else{
                 printf("\nIncorrect password!");
@@ -135,7 +140,7 @@ void widthraw(){
     return ;
 }
 void deposit(){
-    FILE* file = fopen("records.dat","w+");
+    FILE* file = fopen("records.dat","w");
     if(file == NULL){
         printf("\nError in opening file.");
         printf("\nThanks for visiting.");
@@ -153,14 +158,14 @@ void deposit(){
             printf("\nEnter account password : ");
             int pass;
             scanf("%d",&pass);
-            if(pass = info.password){
+            if(pass == info.password){
                 printf("\nEnter amount to be deposited : ");
-                int amount;
-                scanf("%d",&amount);
+                float amount;
+                scanf("%f",&amount);
                 struct Account changer;
                 strcpy(changer.name,info.name);
                 changer.balance = amount + info.balance;
-                printf("\nYour account balance is : %d",changer.balance);
+                printf("\nYour account balance is : %.2f",changer.balance);
                 changer.password = info.password;
                 changer.acc_number = info.acc_number;
                 fseek(file,-(long)sizeof(changer),SEEK_CUR);
@@ -202,7 +207,7 @@ void check_balance(){
             int pass;
             scanf("%d",&pass);
             if(pass == info.password){
-                printf("\nAccount holder name : %d\nAccount number : %d\nBalance : %d\nThanks for visiting.",info.name,info.acc_number,info.balance);
+                printf("\nAccount holder name : %d\nAccount number : %d\nBalance : %.2f\nThanks for visiting.",info.name,info.acc_number,info.balance);
                 fclose(file);
                 break;
             }else{
@@ -229,16 +234,13 @@ void add_account(){
     char name[20];
     fgets(name,20,stdin);
     strcpy(new.name,name);
-    fwrite(&new.name,sizeof(new.name),1,file);
     printf("Enter account number : ");
     scanf("%d",&new.acc_number);
-    fwrite(&new.acc_number,sizeof(new.acc_number),1,file);
     printf("\nEnter your account password : ");
     scanf("%d",&new.password);
-    fwrite(&new.password,sizeof(new.password),1,file);
     printf("\nEnter your initial balance : ");
     scanf("%f",&new.balance);
-    fwrite(&new.balance,sizeof(new.balance),1,file);
+    fwrite(&new,sizeof(new),1,file);
     printf("\n--------YOUR ACCOUNT HAS BEEN CREATED SUCCESSFULLY ---------\n");
     fclose(file);
     return ;
